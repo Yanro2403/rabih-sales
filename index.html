@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════
+DEV NOTES — دورة ربيع عساف للمبيعات · V2 (Stox-inspired)
+═══════════════════════════════════════════════════════════════════
+STRATEGY:
+  • Language: Levantine spoken Arabic (لهجة عامية), NOT MSA
+  • Positioning: warm campus (Stox-style) — not luxury boutique
+  • Sales model: ALL tiers close by phone — no direct checkout
+    · Rabih wants to speak with every lead across all 3 tiers
+    · Lead form is the ONLY conversion path
+    · Payment negotiated on the call (bank transfer / card / installments)
+  • Fulfillment: recorded video course + WhatsApp graduate group
+  • 3 tiers:
+    · Digital course     — $500
+    · Group course       — $1,500 (6 live sessions, up to 10 people)
+    · 1:1 mentorship     — $3,500 (3 months, active business owners only)
+
+PLACEHOLDERS TO FILL (search "TODO"):
+  1. LEAD_ENDPOINT — where the lead form posts (Zapier/Make/Sheets/CRM)
+  2. VSL_EMBED — hero video
+  3. WHATSAPP_NUMBER — international, no + (in success screen link)
+  4. GA4 / Meta Pixel / TikTok / Snap IDs
+  5. Auto-email after lead submit — configure in Zapier/Make (see LEAD_ENDPOINT)
+  6. Photos: /photos/portrait.webp etc.
+
+COPY NOTES — claims Rabih must verify verbatim before launch:
+  · "كسر رقم قياسي عمره 10 سنين بشركة اتصالات كبيرة"
+  · قصة أول إغلاق (25 خط → 50 باقة)
+  · "من الاتصالات لعالم العقارات والمقاولات"
+  · "آلاف مكالمات البيع الحقيقية"
+  · Refund promise: "كسب أو نرجّعلك مصاريك" — confirm terms with Rabih
+
+TESTIMONIALS: commented out until 2 real ones with permission.
+═══════════════════════════════════════════════════════════════════
+-->
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>دورة ربيع عساف للمبيعات — علّم حالك تسكّر أي صفقة، من الصفر</title>
+<meta name="description" content="دورة فيديو عربية عملية من ربيع عساف: كيف تدير مكالمة بيع من أول «السلام عليكم» لحد الإغلاق. بلغة بسيطة، بأمثلة من عنا، مع مجموعة واتساب حصرية للخريجين.">
+
+<!-- TODO: GA4 / Meta Pixel / TikTok / Snap — أزل التعليق أضف المعرفات -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0A0908;         /* أسود عميق */
+    --bg-2:#141210;       /* خلفية بطاقات */
+    --bg-3:#1C1917;       /* بطاقات فاتحة أكثر */
+    --border:#2A2622;
+    --amber:#F5A845;      /* الذهب الكهرماني — الأساسي */
+    --amber-hot:#FFC062;  /* هوفر */
+    --green:#6CE08A;      /* تشيك الأخضر — تأكيدات */
+    --text:#FFFAF5;
+    --sub:#B9B2A8;
+    --sub-2:#8A8377;
+    --danger:#E86A5B;     /* لتحذيرات / تشطيب سعر قديم */
+    --whats:#25D366;
+    --radius:14px;
+    --disp:'Noto Kufi Arabic', system-ui, sans-serif;
+    --body:'Segoe UI', Tahoma, 'Geeza Pro', Arial, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+  body{
+    font-family:var(--body);background:var(--bg);color:var(--text);
+    line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(245,168,69,.06), transparent 40%),
+      linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+    background-size:auto, 40px 40px, 40px 40px;
+  }
+  h1,h2,h3,.disp{font-family:var(--disp);line-height:1.4}
+  a{color:inherit}
+  img,svg,iframe{max-width:100%;display:block}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+  .wrap-tight{max-width:860px;margin:0 auto;padding:0 20px}
+  section{padding:70px 0}
+  @media(max-width:600px){section{padding:52px 0}}
+
+  /* ── Kicker badge ── */
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--disp);font-weight:700;font-size:.82rem;color:var(--amber);
+    border:1px solid rgba(245,168,69,.4);border-radius:999px;padding:6px 16px;margin-bottom:20px;
+  }
+  .kicker::before{content:"";width:8px;height:8px;background:var(--amber);border-radius:50%;
+    box-shadow:0 0 0 4px rgba(245,168,69,.2);animation:pulse 2s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(245,168,69,0)}}
+
+  h2{font-size:clamp(1.7rem,4.8vw,2.4rem);font-weight:900;margin-bottom:16px}
+  .lead{font-size:1.08rem;max-width:680px;color:var(--sub)}
+
+  /* ── Header ── */
+  header{background:rgba(10,9,8,.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);padding:14px 0;position:sticky;top:0;z-index:50}
+  .head-in{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .logo{font-family:var(--disp);font-weight:900;font-size:1.25rem;letter-spacing:.02em}
+  .logo .dot{color:var(--amber)}
+  .head-cta{display:none}
+  @media(min-width:640px){
+    .head-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;
+      font-size:.9rem;color:var(--amber);border:1px solid var(--amber);border-radius:999px;
+      padding:8px 20px;text-decoration:none;transition:all .2s}
+    .head-cta:hover{background:var(--amber);color:var(--bg)}
+  }
+
+  /* ── HERO ── */
+  .hero{padding:60px 0 40px;position:relative}
+  .hero-grid{display:grid;gap:40px;align-items:center}
+  @media(min-width:900px){.hero-grid{grid-template-columns:1.1fr 1fr}}
+  .hero h1{
+    font-size:clamp(1.9rem,5.5vw,2.9rem);font-weight:900;color:var(--text);
+    margin-bottom:20px;line-height:1.3;
+  }
+  .hero h1 em{color:var(--amber);font-style:normal;position:relative}
+  .hero h1 em::after{
+    content:"";position:absolute;inset-inline:0;bottom:-4px;height:3px;
+    background:var(--amber);border-radius:2px;
+    transform:scaleX(0.85);transform-origin:right;
+  }
+  .hero-sub{font-size:1.08rem;color:var(--sub);margin-bottom:26px;max-width:520px}
+  .hero-aud{font-size:.95rem;color:var(--sub-2);margin-bottom:32px;max-width:520px}
+
+  /* ── Dual CTA row ── */
+  .cta-row{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+  @media(min-width:520px){.cta-row{flex-direction:row}}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:var(--disp);font-weight:900;font-size:1.05rem;
+    padding:16px 28px;border-radius:12px;min-height:52px;
+    text-decoration:none;border:none;cursor:pointer;flex:1;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--amber);color:#1A1108;
+    box-shadow:0 6px 22px rgba(245,168,69,.28)}
+  .btn-primary:hover{background:var(--amber-hot);transform:translateY(-2px);
+    box-shadow:0 10px 26px rgba(245,168,69,.4)}
+  .btn-primary:focus-visible{outline:3px solid var(--text);outline-offset:3px}
+  .btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+  .btn-outline:hover{border-color:var(--amber);color:var(--amber)}
+  .btn-outline:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
+  .checks{list-style:none;margin-top:22px}
+  .checks li{display:flex;align-items:center;gap:10px;font-size:.95rem;color:var(--text);margin-bottom:10px}
+  .checks .tick{width:20px;height:20px;background:var(--green);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:#0A0908;font-weight:900;flex-shrink:0;font-size:.75rem}
+
+  /* ── VSL frame ── */
+  .vsl{
+    background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+    aspect-ratio:9/12;max-height:520px;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
+    position:relative;overflow:hidden;
+  }
+  @media(min-width:900px){.vsl{aspect-ratio:9/14}}
+  .vsl::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 45%, rgba(245,168,69,.15), transparent 60%)}
+  .vsl .play{width:82px;height:82px;border-radius:50%;background:var(--amber);
+    display:flex;align-items:center;justify-content:center;position:relative;z-index:2;
+    box-shadow:0 0 0 12px rgba(245,168,69,.15), 0 0 0 24px rgba(245,168,69,.06)}
+  .vsl .play svg{width:28px;height:28px;fill:#1A1108;margin-inline-start:-3px}
+  .vsl-cap{font-family:var(--disp);font-weight:700;color:var(--text);text-align:center;
+    padding:0 20px;position:relative;z-index:2;line-height:1.6}
+  .vsl-cap small{display:block;color:var(--sub-2);font-weight:500;font-size:.82rem;margin-top:4px}
+
+  /* ── Story strip ── */
+  .story{background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);}
+  .story-grid{display:grid;gap:16px;margin-top:36px}
+  @media(min-width:700px){.story-grid{grid-template-columns:repeat(3,1fr)}}
+  .story-card{background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius);
+    padding:24px;transition:border-color .2s, transform .2s}
+  .story-card:hover{border-color:var(--amber);transform:translateY(-2px)}
+  .story-card .num{font-family:var(--disp);font-weight:900;color:var(--amber);
+    font-size:2rem;line-height:1;margin-bottom:12px}
+  .story-card h3{font-size:1.05rem;font-weight:900;margin-bottom:8px}
+  .story-card p{font-size:.94rem;color:var(--sub)}
+
+  /* ── Sections common ── */
+  .center{text-align:center}
+  .center .lead{margin-inline:auto}
+
+  /* ── For-Whom situations ── */
+  .situations{list-style:none;display:grid;gap:12px;margin-top:36px}
+  @media(min-width:700px){.situations{grid-template-columns:1fr 1fr}}
+  .situations li{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+    padding:18px 22px;font-size:.98rem;display:flex;align-items:flex-start;gap:12px}
+  .situations li .dot{width:8px;height:8px;background:var(--amber);border-radius:50%;
+    margin-top:10px;flex-shrink:0}
+
+  /* ── Syllabus ── */
+  .syll{margin-top:36px}
+  .syll details{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);
+    margin-bottom:12px;transition:border-color .2s}
+  .syll details[open]{border-color:var(--amber)}
+  .syll summary{cursor:pointer;list-style:none;padding:20px 24px;font-family:var(--disp);
+    font-weight:700;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;
+    min-height:44px;gap:16px}
+  .syll summary::-webkit-details-marker{display:none}
+  .syll summary::after{content:"+";color:var(--amber);font-size:1.6rem;font-weight:400;flex-shrink:0}
+  .syll details[open] summary::after{content:"−"}
+  .syll .body{padding:0 24px 20px;font-size:.96rem;color:var(--sub);border-top:1px solid var(--border);padding-top:16px}
+  .syll .body li{margin-inline-start:22px;margin-bottom:8px}
+  .track{color:var(--amber);font-size:.78rem;margin-inline-start:12px;font-weight:700}
+
+  /* ── How it works ── */
+  .steps{counter-reset:s;display:grid;gap:20px;margin-top:36px}
+  @media(min-width:700px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;position:relative}
+  .step::before{counter-increment:s;content:counter(s);
+    display:flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:50%;background:var(--amber);color:#1A1108;
+    font-family:var(--disp);font-weight:900;font-size:1.2rem;margin-bottom:16px}
+  .step h3{font-size:1.05rem;margin-bottom:8px}
+  .step p{font-size:.94rem;color:var(--sub)}
+
+  /* ── Pricing card ── */
+  .price-grid{display:grid;gap:20px;margin-top:36px;max-width:1100px;margin-inline:auto}
+  @media(min-width:900px){.price-grid{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+  .tier{
+    background:var(--bg-2);border:1px solid var(--border);border-radius:20px;
+    padding:32px 28px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:border-color .2s, transform .2s;
+  }
+  .tier:hover{transform:translateY(-3px)}
+  .tier.featured{border-color:var(--amber);
+    box-shadow:0 0 0 1px var(--amber), 0 10px 40px rgba(245,168,69,.12)}
+  .tier.featured::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(245,168,69,.10), transparent 60%);pointer-events:none}
+  .tier .flag{position:absolute;top:0;inset-inline-end:24px;background:var(--amber);color:#1A1108;
+    font-family:var(--disp);font-weight:900;font-size:.78rem;padding:6px 14px;border-radius:0 0 8px 8px;z-index:2}
+  .tier .tier-name{font-family:var(--disp);font-weight:900;font-size:1.05rem;
+    color:var(--amber);margin-bottom:6px;position:relative;z-index:2}
+  .tier .tier-tag{font-size:.85rem;color:var(--sub-2);margin-bottom:20px;position:relative;z-index:2;min-height:2.6em}
+  .tier .price-main{font-family:var(--disp);font-weight:900;
+    font-size:clamp(2.2rem,5.5vw,2.8rem);color:var(--text);line-height:1;position:relative;z-index:2}
+  .tier .price-alt{color:var(--sub);margin:6px 0 22px;font-size:.94rem;position:relative;z-index:2;min-height:1.5em}
+  .tier .checks{margin-top:0;margin-bottom:24px;flex:1;position:relative;z-index:2}
+  .tier .checks li{font-size:.93rem;align-items:flex-start;line-height:1.6}
+  .tier .checks li .tick{margin-top:3px}
+  .tier .btn{width:100%;position:relative;z-index:2}
+  .tier .tier-foot{font-size:.78rem;color:var(--sub-2);text-align:center;margin-top:12px;position:relative;z-index:2}
+
+  /* ── Lead form ── */
+  .lead-section{background:linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);}
+  .lead-form{max-width:520px;margin:32px auto 0;
+    background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px}
+  .lead-form .row{margin-bottom:16px}
+  .lead-form label{display:block;font-family:var(--disp);font-weight:700;font-size:.9rem;
+    color:var(--text);margin-bottom:6px}
+  .lead-form input{width:100%;background:var(--bg);border:1px solid var(--border);
+    color:var(--text);padding:14px 16px;border-radius:10px;font-family:var(--body);
+    font-size:1rem;min-height:48px;transition:border-color .15s}
+  .lead-form input:focus{outline:none;border-color:var(--amber)}
+  .lead-form .row-2{display:grid;gap:14px}
+  @media(min-width:520px){.lead-form .row-2{grid-template-columns:1fr 1fr}}
+  .lead-form .btn{width:100%;margin-top:10px}
+  .form-tiny{font-size:.78rem;color:var(--sub-2);margin-top:12px;text-align:center}
+  .form-tiny a{color:var(--amber)}
+
+  /* ── Two-step form UI ── */
+  .lead-form{transition:min-height .25s ease}
+  .step-ind{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:24px}
+  .step-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:background .2s, box-shadow .2s}
+  .step-dot.on{background:var(--amber);box-shadow:0 0 0 4px rgba(245,168,69,.2)}
+  .step-line{height:2px;width:36px;background:var(--border);border-radius:1px}
+  .lead-step{animation:fadein .28s ease}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .step-2-lead{color:var(--sub);font-size:.94rem;margin-bottom:20px;text-align:center;
+    padding-bottom:16px;border-bottom:1px solid var(--border)}
+  .radio-row{display:grid;gap:8px;margin-top:6px}
+  @media(min-width:520px){.radio-row{grid-template-columns:repeat(3,1fr)}}
+  .radio-opt{position:relative;cursor:pointer}
+  .radio-opt input{position:absolute;opacity:0;pointer-events:none}
+  .radio-opt span{display:block;background:var(--bg);border:1px solid var(--border);border-radius:10px;
+    padding:12px 10px;text-align:center;font-size:.9rem;transition:all .15s;min-height:44px;
+    display:flex;align-items:center;justify-content:center}
+  .radio-opt input:checked + span{border-color:var(--amber);background:rgba(245,168,69,.08);color:var(--amber)}
+  .radio-opt input:focus-visible + span{outline:2px solid var(--amber);outline-offset:2px}
+  .lead-done{text-align:center;padding:24px 0}
+  .lead-done-tick{width:56px;height:56px;border-radius:50%;background:var(--green);
+    color:#0A0908;font-weight:900;font-size:1.6rem;display:flex;align-items:center;justify-content:center;
+    margin:0 auto 16px}
+  .lead-done-title{font-family:var(--disp);font-weight:900;font-size:1.35rem;color:var(--amber);margin-bottom:8px}
+  .lead-done p{color:var(--sub)}
+
+  /* ── FAQ ── */
+  .faq{margin-top:36px}
+  .faq details{border-bottom:1px solid var(--border);padding:6px 0}
+  .faq summary{cursor:pointer;list-style:none;font-family:var(--disp);font-weight:700;
+    font-size:1.02rem;padding:18px 4px;min-height:44px;display:flex;
+    justify-content:space-between;align-items:center;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--amber);font-size:1.4rem;flex-shrink:0}
+  .faq details[open] summary::after{content:"−"}
+  .faq .a{padding:0 4px 20px;font-size:.96rem;color:var(--sub)}
+
+  /* ── Finale ── */
+  .finale{text-align:center;padding-bottom:100px}
+  .finale h2{max-width:680px;margin-inline:auto}
+  .finale .cta-row{max-width:520px;margin:32px auto 0}
+
+  /* ── Footer ── */
+  footer{background:var(--bg-2);border-top:1px solid var(--border);
+    color:var(--sub-2);font-size:.82rem;padding:32px 0;text-align:center}
+  footer a{color:var(--sub);text-decoration:underline}
+
+  /* ── Sticky mobile CTA ── */
+  .sticky{position:fixed;bottom:0;inset-inline:0;z-index:60;
+    background:rgba(10,9,8,.97);backdrop-filter:blur(10px);
+    border-top:1px solid var(--amber);
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    display:flex;align-items:center;gap:10px}
+  .sticky .price{font-family:var(--disp);font-weight:900;color:var(--amber);font-size:1rem;white-space:nowrap;padding-inline-end:6px}
+  .sticky .price small{display:block;color:var(--sub-2);font-weight:500;font-size:.7rem}
+  .sticky .btn{padding:12px 20px;font-size:.95rem;min-height:44px;box-shadow:none;flex:1}
+  @media(min-width:900px){.sticky{display:none}}
+  body{padding-bottom:88px}
+  @media(min-width:900px){body{padding-bottom:0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-in">
+    <div class="logo">ربيع عساف<span class="dot">.</span></div>
+    <a href="#pricing" class="head-cta">سجّل بالدورة</a>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">دورة المبيعات · الإطلاق الآن</span>
+        <h1>المبيعات مش موهبة —<br>المبيعات <em>عضلة</em>.</h1>
+        <p class="hero-sub">علّم حالك تدير مكالمة بيع من أول «السلام عليكم» لحد الإغلاق. بلغة بسيطة، بأمثلة من عنا، ومنهج بيمشي على أي حكي — تلفون، وجاهي، أو رسايل. اختار المسار اللي يناسبك: كورس مسجّل، مجموعة صغيرة، أو مرافقة شخصية.</p>
+        <p class="hero-aud">لأصحاب المشاريع، المستقلّين، ومندوبي المبيعات — حتى لو ما بعت شي بحياتك.</p>
+
+        <div class="cta-row">
+          <a href="#pricing" class="btn btn-primary js-cta" data-loc="hero-primary">شوف المسارات ←</a>
+          <a href="#lead" class="btn btn-outline js-cta" data-loc="hero-lead">اتركوا تفاصيلكم</a>
+        </div>
+
+        <ul class="checks">
+          <li><span class="tick">✓</span> ثلاثة مسارات — اختار اللي يناسبك ووضعك</li>
+          <li><span class="tick">✓</span> مجموعة واتساب حصرية للخريجين</li>
+          <li><span class="tick">✓</span> منتواصل معك خلال ٢٤ ساعة من التسجيل</li>
+        </ul>
+      </div>
+
+      <!-- TODO: VSL_EMBED — استبدل هذه الكتلة بكود التضمين -->
+      <div class="vsl" role="img" aria-label="فيديو تعريفي بالدورة">
+        <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vsl-cap">شاهد قصة ربيع<small>الإصابة اللي أنهت مسيرته بكرة القدم… كانت أحسن صفقة بحياته</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STORY / AUTHORITY ═══════════ -->
+<section class="story">
+  <div class="wrap">
+    <span class="kicker">مين ربيع</span>
+    <h2>ما خطط يكون رجل مبيعات — واكتشف إنه أحسن واحد فيها.</h2>
+    <p class="lead">طالب هندسة مدنية ولاعب كرة قدم، أوقفته إصابة وحوّلت مساره. دخل عالم المبيعات مضطر، وطلع منه بأرقام قياسية. اليوم بيسلّملك المنهج كامل بصراحته المعروفة.</p>
+
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="num">50</div>
+        <h3>باقة بمكالمة وحدة</h3>
+        <p>عميل واحد من القدس، ٢٥ خط اتصالات. طلع من المكالمة بخمسين باقة والقاعة تصفّق. «هون فهمت إني رجل مبيعات».</p>
+      </div>
+      <div class="story-card">
+        <div class="num">10<span style="font-size:1rem"> سنين</span></div>
+        <h3>الرقم اللي محدا كسره</h3>
+        <p>هدف يومي وقف قدّامه الكل بشركة اتصالات كبيرة عشر سنين — لحد ما ربيع كسره. وراتب بعمر الـ١٨ بيغطّي رواتب من سبقوه بسنين.</p>
+      </div>
+      <div class="story-card">
+        <div class="num">6<span style="font-size:1rem"> شهور «لأ»</span></div>
+        <h3>وبعدين إجت الصفقة</h3>
+        <p>أرض حاول يبيعها نص سنة، وسمع الرفض مرارًا — لحد ما وصل للمشتري الصح وسكّر الصفقة. الدرس: «لأ» يعني يا نجحت يا تعلّمت.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOR WHOM ═══════════ -->
+<section>
+  <div class="wrap-tight">
+    <span class="kicker">هاد إنت؟</span>
+    <h2>الدورة إلك إذا…</h2>
+    <ul class="situations">
+      <li><span class="dot"></span>بتنجمد لحظة العميل يقلّك «غالي عليّ» — وبتصير تدافع عن السعر بدل ما تدير الحكي.</li>
+      <li><span class="dot"></span>المكالمة تمشي ممتاز… وبالآخر تسمع «خلّيني أفكّر وبرجعلك» — ومحدا برجع.</li>
+      <li><span class="dot"></span>عندك منتج ممتاز، بس بتكره الإلحاح وما بدك تكون تقيل عالناس.</li>
+      <li><span class="dot"></span>فتحت مشروعك الخاص — وكل صفقة بتتأجل بتكلّفك من جيبك مباشرة.</li>
+      <li><span class="dot"></span>بتبيع من سنين بالفطرة — وحاسس وصلت لسقف ما بتعرف كيف تكسره.</li>
+      <li><span class="dot"></span>بتعرف إنه المبيعات مهارة أساسية — بس محدا علّمك ياها بشكل منظّم.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ SYLLABUS ═══════════ -->
+<section style="background:var(--bg-2)">
+  <div class="wrap-tight">
+    <span class="kicker">المنهج</span>
+    <h2>١٤ درس بثلاث أقسام — من العقلية للإغلاق</h2>
+    <p class="lead">كل درس فيديو عملي مباشر، بأسلوب ربيع الصريح، ومع مهمة تطبيقية بتنقل اللي تعلّمته لمكالماتك بنفس اليوم.</p>
+
+    <div class="syll">
+      <details open>
+        <summary><span><span class="track">القسم الأول</span>المقدمة والعقلية</span></summary>
+        <div class="body"><ul>
+          <li>مين أنا وليش المبيعات — قصة ربيع كاملة، وليش كل واحد فينا رجل مبيعات</li>
+          <li>ليش البيع صعب فعلًا — الحضور والإصغاء الفعّال</li>
+          <li>الثقة والإيغو كأدوات شغل — عادات الصبح وتمرين الورقة</li>
+          <li>«العضلة» — كيف تفصل الرفض اللحظي عن المسار الكبير</li>
+          <li>الفروقات الثقافية — كيف تبيع بأي ثقافة، ومين بيقرّر فعلًا</li>
+        </ul></div>
+      </details>
+
+      <details>
+        <summary><span><span class="track">القسم الثاني</span>مكالمة البيع</span></summary>
+        <div class="body"><ul>
+          <li>نموذج «الوجع» — كيف تكشف المشكلة الحقيقية ورا حكي العميل</li>
+          <li>التحضير للمكالمة — ومصطلحات ربيع اللي بتشتري قلب العميل</li>
+          <li>تنسيق التوقعات — العميل مش صاحبك: وين الحد المهني</li>
+          <li>إدارة الاعتراضات — «غالي» و«بدي أستشير» تفكيك مش جدال</li>
+          <li>مراحل المكالمة كاملة — من التقريب لحد المتابعة، بعلامات قياس واضحة</li>
+        </ul></div>
+      </details>
+
+      <details>
+        <summary><span><span class="track">القسم الثالث</span>الاحتراف والإغلاق</span></summary>
+        <div class="body"><ul>
+          <li>حالات صعبة — صندوق ردود جاهز للعميل الحاد، المستعجل، والمماطل</li>
+          <li>الفريمينغ — مين بيقود المكالمة، وكيف العميل بيوصل للقرار بحاله</li>
+          <li>الإغلاق — بيع بيطلع منه العميل شاكرك، مش مضغوط</li>
+          <li>الختام — خطتك للأيام اللي بعد الدورة</li>
+        </ul></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section>
+  <div class="wrap">
+    <span class="kicker">كيف بتشتغل</span>
+    <h2>ثلاث خطوات بس — من الصفحة هاي لأول درس</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>اتركلنا تفاصيلك</h3>
+        <p>عبّي النموذج، اختار المسار اللي يهمك، وسيبلنا رقمك — بيوصلك بريد تأكيد فورًا.</p>
+      </div>
+      <div class="step">
+        <h3>منتواصل معك خلال ٢٤ ساعة</h3>
+        <p>مكالمة قصيرة نتعرف على وضعك، نجاوب على أسئلتك، ونحدّد إذا الدورة تناسبك.</p>
+      </div>
+      <div class="step">
+        <h3>ابدأ الدورة فورًا</h3>
+        <p>بعد ما نتفق، بتحصل على وصول كامل للمحتوى وبتدخل مجموعة الخريجين الحصرية.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRICING (3 TIERS) ═══════════ -->
+<section id="pricing">
+  <div class="wrap center">
+    <span class="kicker">اختر مسارك</span>
+    <h2>ثلاث طرق تتعلّم فيها المنهج — اختار اللي يناسبك</h2>
+    <p class="lead" style="margin-inline:auto">من الكورس المسجّل لحالك، للمجموعة الصغيرة، للمرافقة الشخصية مع ربيع — كل مسار مبني لهدف مختلف.</p>
+
+    <div class="price-grid">
+
+      <!-- ═══ TIER 1: Digital ═══ -->
+      <div class="tier">
+        <div class="tier-name">الكورس الرقمي</div>
+        <p class="tier-tag">تعلّم بوقتك، بإيقاعك — الوصول الفوري لكل المنهج</p>
+        <div class="price-main">‏$500</div>
+        <p class="price-alt">دفعة وحدة · أو ٣ دفعات</p>
+
+        <ul class="checks">
+          <li><span class="tick">✓</span> ١٤ درس فيديو — وصول دائم</li>
+          <li><span class="tick">✓</span> مهمّات تطبيقية بعد كل درس</li>
+          <li><span class="tick">✓</span> مجموعة واتساب حصرية للخريجين</li>
+          <li><span class="tick">✓</span> تحديثات مجانية للمحتوى</li>
+          <li><span class="tick">✓</span> ضمان الرضا — كسب أو نرجّعلك مصاريك</li>
+        </ul>
+
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-digital" data-tier="digital">اتركوا تفاصيلكم ←</a>
+        <p class="tier-foot">مكالمة قصيرة معنا قبل التسجيل</p>
+      </div>
+
+      <!-- ═══ TIER 2: Group (featured) ═══ -->
+      <div class="tier featured">
+        <span class="flag">الأكثر طلبًا</span>
+        <div class="tier-name">الكورس الجماعي</div>
+        <p class="tier-tag">‏٦ لقاءات مباشرة مع ربيع، بمجموعة صغيرة حتى ١٠ أشخاص</p>
+        <div class="price-main">‏$1,500</div>
+        <p class="price-alt">مجموعة مغلقة — أماكن محدودة</p>
+
+        <ul class="checks">
+          <li><span class="tick">✓</span> ٦ لقاءات محاضرة مباشرة مع ربيع</li>
+          <li><span class="tick">✓</span> ‏١٠ مشاركين كحد أقصى — تفاعل حقيقي</li>
+          <li><span class="tick">✓</span> يشمل كل محتوى الكورس الرقمي</li>
+          <li><span class="tick">✓</span> جلسات أسئلة وأجوبة مباشرة</li>
+          <li><span class="tick">✓</span> مجموعة واتساب خاصة للمشاركين</li>
+        </ul>
+
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-group" data-tier="group">اتركوا تفاصيلكم ←</a>
+        <p class="tier-foot">التسجيل بعد مقابلة قصيرة معنا</p>
+      </div>
+
+      <!-- ═══ TIER 3: 1:1 mentorship ═══ -->
+      <div class="tier">
+        <div class="tier-name">المرافقة الشخصية</div>
+        <p class="tier-tag">‏٣ شهور مرافقة مباشرة مع ربيع — مخصّصة لعملك</p>
+        <div class="price-main">‏$3,500</div>
+        <p class="price-alt">لأصحاب المصالح الفعّالة فقط</p>
+
+        <ul class="checks">
+          <li><span class="tick">✓</span> ٣ شهور مرافقة شخصية مع ربيع</li>
+          <li><span class="tick">✓</span> تشخيص مبيعات مصلحتك بالكامل</li>
+          <li><span class="tick">✓</span> خطة مبيعات مبنية على عملك تحديدًا</li>
+          <li><span class="tick">✓</span> تواصل مباشر بين اللقاءات</li>
+          <li><span class="tick">✓</span> يشمل كل محتوى الكورس الرقمي</li>
+        </ul>
+
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-mentorship" data-tier="mentorship">اتركوا تفاصيلكم ←</a>
+        <p class="tier-foot">مقابلة تأهّل قبل القبول</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LEAD FORM ═══════════ -->
+<section id="lead" class="lead-section">
+  <div class="wrap-tight center">
+    <span class="kicker">اتركلنا تفاصيلك</span>
+    <h2>عندك سؤال؟ بدك المسار الكبير؟ اتركلنا تفاصيلك.</h2>
+    <p class="lead">للكورس الجماعي والمرافقة الشخصية، منتواصل معك بمقابلة قصيرة قبل التسجيل. للكورس الرقمي، سيبلنا رقمك وبنجاوبك على أي سؤال قبل الشرا.</p>
+
+    <div class="lead-form">
+      <!-- ═══ STEP INDICATOR ═══ -->
+      <div class="step-ind" aria-hidden="true">
+        <span class="step-dot on" data-step="1"></span>
+        <span class="step-line"></span>
+        <span class="step-dot" data-step="2"></span>
+      </div>
+
+      <!-- ═══ STEP 1: contact essentials ═══ -->
+      <form class="lead-step js-lead-step-1" data-step="1" novalidate>
+        <div class="row">
+          <label class="disp">أي مسار بيهمك؟</label>
+          <div class="radio-row">
+            <label class="radio-opt"><input type="radio" name="tier_interest" value="digital" required><span>الكورس الرقمي</span></label>
+            <label class="radio-opt"><input type="radio" name="tier_interest" value="group"><span>الجماعي</span></label>
+            <label class="radio-opt"><input type="radio" name="tier_interest" value="mentorship"><span>المرافقة</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="lead-name">الاسم الكامل</label>
+          <input id="lead-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="row-2">
+          <div class="row">
+            <label for="lead-phone">رقم الهاتف</label>
+            <input id="lead-phone" name="phone" type="tel" required autocomplete="tel" dir="ltr" inputmode="tel">
+          </div>
+          <div class="row">
+            <label for="lead-email">البريد الإلكتروني</label>
+            <input id="lead-email" name="email" type="email" required autocomplete="email" dir="ltr" inputmode="email">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">تابع ←</button>
+        <p class="form-tiny">تفاصيلك محمية · ما منرسل رسائل إعلانية للطرف الثالث</p>
+      </form>
+
+      <!-- ═══ STEP 2: qualification (hidden until step 1 submits) ═══ -->
+      <form class="lead-step js-lead-step-2" data-step="2" hidden novalidate>
+        <p class="step-2-lead">ممتاز — بقيت أربع تفاصيل بس، حتى نرجعلك بعرض مناسب:</p>
+        <div class="row-2">
+          <div class="row">
+            <label for="lead-age">العمر</label>
+            <input id="lead-age" name="age" type="number" min="16" max="99" required inputmode="numeric" dir="ltr">
+          </div>
+          <div class="row">
+            <label for="lead-country">البلد</label>
+            <input id="lead-country" name="country" type="text" required autocomplete="country-name">
+          </div>
+        </div>
+        <div class="row">
+          <label for="lead-job">شو بتشتغل؟</label>
+          <input id="lead-job" name="job" type="text" required placeholder="مثلًا: صاحب مطعم، مهندس، مندوب مبيعات">
+        </div>
+        <div class="row">
+          <label class="disp">وضعك المهني</label>
+          <div class="radio-row">
+            <label class="radio-opt"><input type="radio" name="status" value="employee" required><span>موظف</span></label>
+            <label class="radio-opt"><input type="radio" name="status" value="self-employed"><span>مستقل / صاحب مصلحة</span></label>
+            <label class="radio-opt"><input type="radio" name="status" value="student"><span>طالب / بلّش</span></label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">أرسل ←</button>
+        <p class="form-tiny">
+          <a href="#" class="js-lead-back">‹ رجوع لتعديل التفاصيل الأولى</a>
+        </p>
+      </form>
+
+      <!-- ═══ SUCCESS state ═══ -->
+      <div class="lead-step js-lead-done" data-step="3" hidden>
+        <div class="lead-done">
+          <div class="lead-done-tick" aria-hidden="true">✓</div>
+          <div class="lead-done-title">وصلتنا تفاصيلك</div>
+          <p>بعثنالك بريد تأكيد على إيميلك.<br>ربيع أو حدا من فريقه بيتواصل معك خلال ٢٤ ساعة.</p>
+          <p style="margin-top:14px;font-size:.85rem;color:var(--sub-2)">إذا استعجلت — راسلنا على واتساب: <a href="#" class="js-whats" style="color:var(--amber)">اضغط هون</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section>
+  <div class="wrap-tight">
+    <span class="kicker">أسئلة</span>
+    <h2>كل شي بدك تعرفه قبل ما تسجّل</h2>
+
+    <div class="faq">
+      <details>
+        <summary>أنا مبتدئ تمامًا وما بعت شي بحياتي — الدورة إلي؟</summary>
+        <div class="a">أكيد. الدورة مبنية للمبتدئين من الأساس. بتبدأ من العقلية والإصغاء قبل أي تقنية بيع، وبتتدرّج معك درس درس لحد الإغلاق. وإذا بتبيع من سنين بالفطرة — رح تعطيك النظام اللي بيكسر سقفك الحالي.</div>
+      </details>
+      <details>
+        <summary>بأي لغة الدورة؟ ورح أفهما بأي لهجة؟</summary>
+        <div class="a">الدورة بالعربي، بأسلوب ربيع المباشر والواضح، بلهجة عامية سهلة. الأمثلة من واقع السوق العربي — مفهومة لأي عربي من الخليج للمغرب.</div>
+      </details>
+      <details>
+        <summary>كيف بستلم الدورة بعد ما نتفق؟</summary>
+        <div class="a">بعد المكالمة القصيرة معنا، بيوصلك رابط الدخول لمنطقة الأعضاء عالبريد وعالواتساب. بتفتح الدروس من الجوّال أو الكمبيوتر بأي وقت، والوصول دائم.</div>
+      </details>
+      <details>
+        <summary>شو طرق الدفع؟ وفيه تقسيط؟</summary>
+        <div class="a">منقدر نناسبك — تحويل بنكي، بطاقة ائتمانية، أو تطبيقات دفع محلية. وأكيد فيه إمكانية تقسيط، بنحكي بتفاصيلها بالمكالمة حسب المسار اللي بتختاره.</div>
+      </details>
+      <details>
+        <summary>لأيمتى بقدر أدخل الدورة؟</summary>
+        <div class="a">وصولك دائم — مرة تبلّش، بترجع للدروس أيمتى ما بدك، وكل تحديث مستقبلي للمحتوى بيوصلك بلا تكلفة إضافية.</div>
+      </details>
+      <details>
+        <summary>شو مجموعة الواتساب هاي؟</summary>
+        <div class="a">مجموعة واتساب حصرية للطلاب اللي سجّلوا بالدورة. مكان بتشارك فيه تجاربك، بتسأل أسئلة على مكالمات حقيقية، وبتشوف كيف باقي الطلاب بيطبّقوا المنهج. الرابط بيوصلك بعد ما تفتح الدورة.</div>
+      </details>
+      <details>
+        <summary>شو إذا ما ناسبتني الدورة؟</summary>
+        <div class="a">إذا كسبت الدورة وبلّشت وحسّيت إنها مش ناسبتك — بترجع ولنا وبنرجّعلك مصاريك. الهدف مش نضحك عليك، الهدف نبني علاقة طويلة.</div>
+      </details>
+      <details>
+        <summary>قدّيش بحتاج وقت أسبوعيًا؟</summary>
+        <div class="a">الدروس قصيرة ومركّزة، بتحتاج ساعتين لثلاث ساعات أسبوعيًا بين المشاهدة والتطبيق. الأهم مش السرعة — التكرار: العضلة بتنبني بالتمرين اليومي على مكالماتك الحقيقية.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!--
+═══════════ TESTIMONIALS — معلّق حتى شهادتين حقيقيتين مع إذن ═══════════
+لا تفعّل هالسكشن قبل: اقتباس حرفي + الاسم الأول + الصفة + إذن صريح لكل شهادة.
+-->
+
+<!-- ═══════════ FINALE ═══════════ -->
+<section class="finale">
+  <div class="wrap-tight">
+    <span class="kicker">جاهز؟</span>
+    <h2>ابدأ اليوم — والصفقة اللي جاي إلك.</h2>
+    <p class="lead" style="margin-inline:auto">سعر الإطلاق ما رح يضل. سجّل هلأ واحصل على وصول فوري للدورة كاملة، ولمجموعة الخريجين.</p>
+
+    <div class="cta-row">
+      <a href="#pricing" class="btn btn-primary js-cta" data-loc="finale">شوف المسارات ←</a>
+      <a href="#lead" class="btn btn-outline js-cta" data-loc="finale-lead">اتركوا تفاصيلكم</a>
+    </div>
+    <p style="margin-top:20px;font-size:.85rem;color:var(--sub-2)">منتواصل معك خلال ٢٤ ساعة · ضمان الرضا — كسب أو نرجّعلك مصاريك</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    ‏© <span id="yr"></span> ربيع عساف — جميع الحقوق محفوظة ·
+    <a href="#">شروط الاستخدام</a> · <a href="#">سياسة الخصوصية</a>
+  </div>
+</footer>
+
+<div class="sticky">
+  <div class="price">اتركوا تفاصيلكم<small>منتواصل معك خلال ٢٤ ساعة</small></div>
+  <a href="#lead" class="btn btn-primary js-cta" data-loc="sticky">سجّل هون ←</a>
+</div>
+
+<!-- FAQPage JSON-LD -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"أنا مبتدئ تمامًا — الدورة إلي؟","acceptedAnswer":{"@type":"Answer","text":"أكيد. الدورة مبنية للمبتدئين من الأساس. بتبدأ من العقلية والإصغاء قبل أي تقنية بيع، وبتتدرّج معك درس درس لحد الإغلاق."}},
+  {"@type":"Question","name":"بأي لغة الدورة؟","acceptedAnswer":{"@type":"Answer","text":"الدورة بالعربي، بلهجة عامية سهلة. الأمثلة من واقع السوق العربي — مفهومة لأي عربي من الخليج للمغرب."}},
+  {"@type":"Question","name":"كيف بستلم الدورة بعد ما نتفق؟","acceptedAnswer":{"@type":"Answer","text":"بعد المكالمة القصيرة معنا، بيوصلك رابط الدخول لمنطقة الأعضاء عالبريد وعالواتساب. بتفتح الدروس بأي وقت، والوصول دائم."}},
+  {"@type":"Question","name":"شو طرق الدفع؟","acceptedAnswer":{"@type":"Answer","text":"منقدر نناسبك — تحويل بنكي، بطاقة ائتمانية، أو تطبيقات دفع محلية. فيه إمكانية تقسيط، بنحكي بتفاصيلها بالمكالمة."}},
+  {"@type":"Question","name":"شو إذا ما ناسبتني الدورة؟","acceptedAnswer":{"@type":"Answer","text":"إذا كسبت الدورة وبلّشت وحسّيت إنها مش ناسبتك — بترجع ولنا وبنرجّعلك مصاريك."}}
+]}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  /* UTM tracking */
+  var qs = new URLSearchParams(window.location.search);
+  var src = qs.get("utm_source") || "";
+  var med = qs.get("utm_medium") || "";
+  var cmp = qs.get("utm_campaign") || "";
+  var refTag = [src, cmp].filter(Boolean).join("-") || "direct";
+  var leadData = {};
+
+  var TIER_VALUES = { digital: 500, group: 1500, mentorship: 3500 };
+
+  document.querySelectorAll(".js-cta").forEach(function(a){
+    a.addEventListener("click", function(){
+      var loc = a.getAttribute("data-loc") || "cta";
+      var tier = a.getAttribute("data-tier");
+      if (tier){
+        leadData.tier_interest = tier;
+        /* Also pre-select the tier radio in the lead form */
+        var radio = document.querySelector('.js-lead-step-1 input[name="tier_interest"][value="' + tier + '"]');
+        if (radio) radio.checked = true;
+      }
+      if (typeof gtag === "function"){
+        gtag("event", "cta_click", {
+          link_location: loc, ref_tag: refTag, tier: tier || ""
+        });
+      }
+    });
+  });
+
+  /* ── Two-step lead form ── */
+  /* TODO: LEAD_FORM_ENDPOINT — set the URL that receives the payload */
+  var LEAD_ENDPOINT = "";
+
+  var step1 = document.querySelector(".js-lead-step-1");
+  var step2 = document.querySelector(".js-lead-step-2");
+  var done  = document.querySelector(".js-lead-done");
+  var dots  = document.querySelectorAll(".step-ind .step-dot");
+  var backLink = document.querySelector(".js-lead-back");
+
+  function showStep(n){
+    [step1, step2, done].forEach(function(el){
+      if (!el) return;
+      var s = parseInt(el.getAttribute("data-step"), 10);
+      el.hidden = (s !== n);
+    });
+    dots.forEach(function(d){
+      var s = parseInt(d.getAttribute("data-step"), 10);
+      d.classList.toggle("on", s <= n);
+    });
+    /* focus first input of the new step, without scroll jump on mobile */
+    var target = document.querySelector('.lead-step[data-step="' + n + '"] input');
+    if (target && n < 3) setTimeout(function(){ target.focus({preventScroll:true}); }, 60);
+  }
+
+  function submitLead(){
+    leadData.ref_tag = refTag;
+    leadData.ts = new Date().toISOString();
+
+    if (LEAD_ENDPOINT){
+      fetch(LEAD_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(leadData)
+      }).catch(function(){ /* silent — user already sees success */ });
+    } else {
+      /* No endpoint yet — log so devs can see the payload */
+      console.log("[lead payload]", leadData);
+    }
+
+    if (typeof gtag === "function"){
+      gtag("event", "generate_lead", {
+        ref_tag: refTag,
+        country: leadData.country || "",
+        status: leadData.status || ""
+      });
+    }
+    showStep(3);
+  }
+
+  if (step1){
+    step1.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!step1.checkValidity()){ step1.reportValidity(); return; }
+      var d = Object.fromEntries(new FormData(step1));
+      leadData.name = d.name; leadData.phone = d.phone; leadData.email = d.email;
+      leadData.tier_interest = d.tier_interest || leadData.tier_interest || "";
+      if (typeof gtag === "function"){
+        gtag("event", "lead_step_1_complete", {
+          ref_tag: refTag, tier: leadData.tier_interest
+        });
+      }
+      showStep(2);
+    });
+  }
+  if (step2){
+    step2.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!step2.checkValidity()){ step2.reportValidity(); return; }
+      var d = Object.fromEntries(new FormData(step2));
+      leadData.age = d.age; leadData.country = d.country;
+      leadData.job = d.job; leadData.status = d.status;
+      submitLead();
+    });
+  }
+  if (backLink){
+    backLink.addEventListener("click", function(e){
+      e.preventDefault();
+      showStep(1);
+    });
+  }
+})();
+</script>
+</body>
+</html>
