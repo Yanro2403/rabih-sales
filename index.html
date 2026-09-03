@@ -174,6 +174,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
     touch-action:manipulation;
   }
   .btn:active{transform:scale(.98)}
+  .btn[disabled]{opacity:.6;cursor:progress;transform:none}
   .btn-primary{background:var(--amber);color:#1A1108;box-shadow:var(--shadow-amber)}
   .btn-primary:hover{background:var(--amber-hot);transform:translateY(-2px);box-shadow:0 12px 32px rgba(245,168,69,.4)}
   .btn-primary:focus-visible{outline:3px solid var(--text);outline-offset:3px}
@@ -379,6 +380,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
   .lead-form .row-2{display:grid;gap:14px}
   @media(min-width:520px){.lead-form .row-2{grid-template-columns:1fr 1fr}}
   .lead-form .btn{width:100%;margin-top:10px}
+  .lead-form .help{font-size:.78rem;color:var(--sub-2);margin-top:6px;line-height:1.5}
   .form-tiny{font-size:.78rem;color:var(--sub-2);margin-top:14px;text-align:center}
   .form-tiny a{color:var(--amber)}
 
@@ -458,7 +460,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       <a href="#pricing">المسارات</a>
       <a href="#faq">أسئلة</a>
     </nav>
-    <a href="#pricing" class="head-cta">سجّل بالدورة</a>
+    <a href="#pricing" class="head-cta">شوف المسارات</a>
   </div>
 </header>
 
@@ -473,7 +475,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
 
         <div class="cta-row">
           <a href="#pricing" class="btn btn-primary js-cta" data-loc="hero-primary">شوف المسارات <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
-          <a href="#lead" class="btn btn-ghost js-cta" data-loc="hero-lead">اتركوا تفاصيلكم <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+          <a href="#lead" class="btn btn-ghost js-cta" data-loc="hero-lead">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         </div>
 
         <ul class="trust">
@@ -615,7 +617,8 @@ TESTIMONIALS: commented out until 2 real ones with permission.
     <div class="steps">
       <div class="step">
         <h3>اتركلنا تفاصيلك</h3>
-        <p>عبّي النموذج، اختار المسار اللي يهمك، وسيبلنا رقمك — بيوصلك بريد تأكيد فورًا.</p>
+        <!-- TODO: EMAIL_CONFIRM — restore «— بيوصلك بريد تأكيد فورًا» once auto-email is wired -->
+        <p>عبّي النموذج، اختار المسار اللي يهمك، وسيبلنا رقمك.</p>
       </div>
       <div class="step">
         <h3>منتواصل معك خلال ٢٤ ساعة</h3>
@@ -653,7 +656,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
           <li><span class="tick">✓</span> ضمان الرضا — كسب أو نرجّعلك مصاريك</li>
         </ul>
 
-        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-digital" data-tier="digital">اتركوا تفاصيلكم <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-digital" data-tier="digital">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         <p class="tier-foot">مكالمة قصيرة معنا قبل التسجيل</p>
       </div>
 
@@ -673,7 +676,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
           <li><span class="tick">✓</span> مجموعة واتساب خاصة للمشاركين</li>
         </ul>
 
-        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-group" data-tier="group">اتركوا تفاصيلكم <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-group" data-tier="group">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         <p class="tier-foot">التسجيل بعد مقابلة قصيرة معنا</p>
       </div>
 
@@ -692,7 +695,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
           <li><span class="tick">✓</span> يشمل كل محتوى الكورس الرقمي</li>
         </ul>
 
-        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-mentorship" data-tier="mentorship">اتركوا تفاصيلكم <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-mentorship" data-tier="mentorship">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         <p class="tier-foot">مقابلة تأهّل قبل القبول</p>
       </div>
 
@@ -732,7 +735,8 @@ TESTIMONIALS: commented out until 2 real ones with permission.
         <div class="row-2">
           <div class="row">
             <label for="lead-phone">رقم الهاتف</label>
-            <input id="lead-phone" name="phone" type="tel" required autocomplete="tel" dir="ltr" inputmode="tel">
+            <input id="lead-phone" name="phone" type="tel" required autocomplete="tel" dir="ltr" inputmode="tel" placeholder="+962…" aria-describedby="lead-phone-help">
+            <p class="help" id="lead-phone-help">مع رمز الدولة</p>
           </div>
           <div class="row">
             <label for="lead-email">البريد الإلكتروني</label>
@@ -740,7 +744,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
           </div>
         </div>
         <button type="submit" class="btn btn-primary">تابع <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></button>
-        <p class="form-tiny">تفاصيلك محمية · ما منرسل رسائل إعلانية للطرف الثالث</p>
+        <p class="form-tiny">تفاصيلك محمية · ما منشارك تفاصيلك مع أي طرف ثالث</p>
       </form>
 
       <!-- ═══ STEP 2: qualification (hidden until step 1 submits) ═══ -->
@@ -779,7 +783,8 @@ TESTIMONIALS: commented out until 2 real ones with permission.
         <div class="lead-done">
           <div class="lead-done-tick" aria-hidden="true">✓</div>
           <div class="lead-done-title">وصلتنا تفاصيلك</div>
-          <p>بعثنالك بريد تأكيد على إيميلك.<br>ربيع أو حدا من فريقه بيتواصل معك خلال ٢٤ ساعة.</p>
+          <!-- TODO: EMAIL_CONFIRM — restore «بعثنالك بريد تأكيد على إيميلك.» once auto-email is wired -->
+          <p>ربيع أو حدا من فريقه بيتواصل معك خلال ٢٤ ساعة.</p>
           <p style="margin-top:14px;font-size:.85rem;color:var(--sub-2)">إذا استعجلت — راسلنا على واتساب: <a href="#" class="js-whats" style="color:var(--amber)">اضغط هون</a></p>
         </div>
       </div>
@@ -840,11 +845,11 @@ TESTIMONIALS: commented out until 2 real ones with permission.
   <div class="wrap-tight">
     <span class="kicker">جاهز؟</span>
     <h2>ابدأ اليوم — <br><em>والصفقة اللي جاي إلك.</em></h2>
-    <p class="lead" style="margin-inline:auto">سعر الإطلاق ما رح يضل. سجّل هلأ واحصل على وصول فوري للدورة كاملة، ولمجموعة الخريجين.</p>
+    <p class="lead" style="margin-inline:auto">سعر الإطلاق ما رح يضل. اتركلنا تفاصيلك ومنتواصل معك خلال ٢٤ ساعة.</p>
 
     <div class="cta-row">
       <a href="#pricing" class="btn btn-primary js-cta" data-loc="finale">شوف المسارات <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
-      <a href="#lead" class="btn btn-outline js-cta" data-loc="finale-lead">اتركوا تفاصيلكم <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+      <a href="#lead" class="btn btn-outline js-cta" data-loc="finale-lead">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
     </div>
     <p style="margin-top:20px;font-size:.85rem;color:var(--sub-2)">منتواصل معك خلال ٢٤ ساعة · ضمان الرضا — كسب أو نرجّعلك مصاريك</p>
   </div>
@@ -858,8 +863,8 @@ TESTIMONIALS: commented out until 2 real ones with permission.
 </footer>
 
 <div class="sticky">
-  <div class="price">اتركوا تفاصيلكم<small>منتواصل معك خلال ٢٤ ساعة</small></div>
-  <a href="#lead" class="btn btn-primary js-cta" data-loc="sticky">سجّل هون <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+  <div class="price">عندك سؤال؟<small>منتواصل معك خلال ٢٤ ساعة</small></div>
+  <a href="#lead" class="btn btn-primary js-cta" data-loc="sticky">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
 </div>
 
 <!-- FAQPage JSON-LD -->
@@ -935,25 +940,30 @@ TESTIMONIALS: commented out until 2 real ones with permission.
     leadData.ref_tag = refTag;
     leadData.ts = new Date().toISOString();
 
+    function finish(){
+      if (typeof gtag === "function"){
+        gtag("event", "generate_lead", {
+          ref_tag: refTag,
+          country: leadData.country || "",
+          status: leadData.status || ""
+        });
+      }
+      showStep(3);
+    }
+
     if (LEAD_ENDPOINT){
+      /* success is shown whether or not the request succeeds — never lose a lead to a network error */
+      var timer = setTimeout(finish, 4000);
       fetch(LEAD_ENDPOINT, {
         method: "POST",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify(leadData)
-      }).catch(function(){ /* silent — user already sees success */ });
+      }).catch(function(){}).then(function(){ clearTimeout(timer); finish(); });
     } else {
       /* No endpoint yet — log so devs can see the payload */
       console.log("[lead payload]", leadData);
+      finish();
     }
-
-    if (typeof gtag === "function"){
-      gtag("event", "generate_lead", {
-        ref_tag: refTag,
-        country: leadData.country || "",
-        status: leadData.status || ""
-      });
-    }
-    showStep(3);
   }
 
   if (step1){
@@ -978,6 +988,8 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       var d = Object.fromEntries(new FormData(step2));
       leadData.age = d.age; leadData.country = d.country;
       leadData.job = d.job; leadData.status = d.status;
+      var btn = step2.querySelector('button[type="submit"]');
+      if (btn){ btn.disabled = true; btn.setAttribute("aria-busy","true"); btn.textContent = "لحظة…"; } /* TODO: copy — Rabih to confirm */
       submitLead();
     });
   }
