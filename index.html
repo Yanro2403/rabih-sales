@@ -25,11 +25,9 @@ PLACEHOLDERS TO FILL (search "TODO"):
   5. Auto-email after lead submit — configure in Zapier/Make (see LEAD_ENDPOINT)
   6. Photos: /photos/portrait.webp etc.
 
-COPY NOTES — claims Rabih must verify verbatim before launch:
-  · "كسر رقم قياسي عمره 10 سنين بشركة اتصالات كبيرة"
-  · قصة أول إغلاق (25 خط → 50 باقة)
-  · "من الاتصالات لعالم العقارات والمقاولات"
-  · "آلاف مكالمات البيع الحقيقية"
+COPY NOTES:
+  · "مين ربيع" section removed 2026-09-03 at Rabih's request — the VSL tells his story.
+    The story claims (10-year record, 25→50 packages, land deal) live in git history.
   · Refund promise: "كسب أو نرجّعلك مصاريك" — confirm terms with Rabih
 
 TESTIMONIALS: commented out until 2 real ones with permission.
@@ -74,12 +72,12 @@ TESTIMONIALS: commented out until 2 real ones with permission.
     --shadow-amber:0 8px 28px rgba(245,168,69,.28);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  html{scroll-behavior:smooth;scroll-padding-top:84px;overflow-x:hidden;overflow-x:clip}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
   body{
     font-family:var(--body);background:var(--bg);color:var(--text);
     line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    overflow-x:hidden;overflow-x:clip;position:relative;
   }
   h1,h2,h3,.disp{font-family:var(--disp);line-height:1.4}
   a{color:inherit}
@@ -129,7 +127,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
   }
 
   /* ── HERO ── */
-  .hero{padding:96px 0 0;position:relative;overflow:hidden;isolation:isolate}
+  .hero{padding:96px 0 0;position:relative;overflow:hidden;overflow-x:clip;isolation:isolate}
   @media(max-width:600px){.hero{padding-top:56px}}
   /* spotlight: warm beams from the top-left (stage light), like the reference */
   .hero::before{content:"";position:absolute;inset:-10% -20% auto;height:120%;z-index:-2;pointer-events:none;
@@ -447,7 +445,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
 <header>
   <div class="wrap head-in">
     <a href="#" class="logo" aria-label="ربيع عساف — الصفحة الرئيسية"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>ربيع عساف<span class="dot">.</span></a>
-    <a href="#lead" class="head-cta">اتركلنا تفاصيلك</a>
+    <a href="#lead" class="head-cta">اترك تفاصيلك</a>
   </div>
 </header>
 
@@ -457,12 +455,12 @@ TESTIMONIALS: commented out until 2 real ones with permission.
     <div class="hero-in">
         <span class="kicker live">دورة المبيعات · الإطلاق الآن</span>
         <h1>المبيعات مش موهبة —<br>المبيعات <em>عضلة</em>.</h1>
-        <p class="hero-sub">علّم حالك تدير مكالمة بيع من أول «السلام عليكم» لحد الإغلاق. بلغة بسيطة، بأمثلة من عنا، ومنهج بيمشي على أي حكي — تلفون، وجاهي، أو رسايل. اختار المسار اللي يناسبك: كورس مسجّل، مجموعة صغيرة، أو مرافقة شخصية.</p>
+        <p class="hero-sub">تعلّم كيف تدير المكالمة من نقطة البداية حتى الإغلاق، بطريقة سلسة واحترافية. الكورس مناسب لكل طرق البيع «وجاهي أو هاتفي» — عليك فقط تختار الكورس اللي يناسبك بأسفل الصفحة.</p>
         <p class="hero-aud">لأصحاب المشاريع، المستقلّين، ومندوبي المبيعات — حتى لو ما بعت شي بحياتك.</p>
 
         <div class="cta-row">
-          <a href="#lead" class="btn btn-primary js-cta" data-loc="hero-primary">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
-          <a href="#pricing" class="btn btn-ghost js-cta" data-loc="hero-pricing">شوف المسارات <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+          <a href="#lead" class="btn btn-primary js-cta" data-loc="hero-primary">اترك تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+          <a href="#pricing" class="btn btn-ghost js-cta" data-loc="hero-pricing">اختار الدورة المناسبة <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         </div>
 
         <ul class="trust">
@@ -482,53 +480,16 @@ TESTIMONIALS: commented out until 2 real ones with permission.
   </div>
 </section>
 
-<!-- ═══════════ STORY / AUTHORITY ═══════════ -->
-<section class="story" id="about">
-  <div class="wrap">
-    <div class="bio">
-      <div>
-        <span class="kicker">مين ربيع</span>
-        <h2>ما خطط يكون رجل مبيعات — <br><em>واكتشف إنه أحسن واحد فيها.</em></h2>
-        <p class="lead">طالب هندسة مدنية ولاعب كرة قدم، أوقفته إصابة وحوّلت مساره. دخل عالم المبيعات مضطر، وطلع منه بأرقام قياسية. اليوم بيسلّملك المنهج كامل بصراحته المعروفة.</p>
-      </div>
-      <!-- TODO: PHOTO — استبدل الـ svg بـ <img src="/photos/portrait.webp" alt="ربيع عساف" width="800" height="1000" loading="lazy"> -->
-      <div class="bio-photo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      </div>
-    </div>
-
-    <div class="story-grid">
-      <div class="story-card">
-        <div class="num">50</div>
-        <h3>باقة بمكالمة وحدة</h3>
-        <p>عميل واحد من القدس، ٢٥ خط اتصالات. طلع من المكالمة بخمسين باقة والقاعة تصفّق. «هون فهمت إني رجل مبيعات».</p>
-      </div>
-      <div class="story-card">
-        <div class="num">10<span>سنين</span></div>
-        <h3>الرقم اللي محدا كسره</h3>
-        <p>هدف يومي وقف قدّامه الكل بشركة اتصالات كبيرة عشر سنين — لحد ما ربيع كسره. وراتب بعمر الـ١٨ بيغطّي رواتب من سبقوه بسنين.</p>
-      </div>
-      <div class="story-card">
-        <div class="num">6<span>شهور «لأ»</span></div>
-        <h3>وبعدين إجت الصفقة</h3>
-        <p>أرض حاول يبيعها نص سنة، وسمع الرفض مرارًا — لحد ما وصل للمشتري الصح وسكّر الصفقة. الدرس: «لأ» يعني يا نجحت يا تعلّمت.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════ FOR WHOM ═══════════ -->
 <section>
   <div class="wrap-tight center">
     <span class="kicker">هاد إنت؟</span>
     <h2>الدورة إلك <em>إذا…</em></h2>
     <ul class="situations">
-      <li><span class="tick">✓</span>بتنجمد لحظة العميل يقلّك «غالي عليّ» — وبتصير تدافع عن السعر بدل ما تدير الحكي.</li>
-      <li><span class="tick">✓</span>المكالمة تمشي ممتاز… وبالآخر تسمع «خلّيني أفكّر وبرجعلك» — ومحدا برجع.</li>
-      <li><span class="tick">✓</span>عندك منتج ممتاز، بس بتكره الإلحاح وما بدك تكون تقيل عالناس.</li>
-      <li><span class="tick">✓</span>فتحت مشروعك الخاص — وكل صفقة بتتأجل بتكلّفك من جيبك مباشرة.</li>
-      <li><span class="tick">✓</span>بتبيع من سنين بالفطرة — وحاسس وصلت لسقف ما بتعرف كيف تكسره.</li>
-      <li><span class="tick">✓</span>بتعرف إنه المبيعات مهارة أساسية — بس محدا علّمك ياها بشكل منظّم.</li>
+      <li><span class="tick">✓</span>حابب تطوّر من مهاراتك بالإقناع وتعرف تدير المكالمات.</li>
+      <li><span class="tick">✓</span>بتبيع من سنين.</li>
+      <li><span class="tick">✓</span>المكالمة بتمشي ممتاز، وبالآخر بتسمع اعتراضات وما بتتسكّر الصفقة.</li>
+      <li><span class="tick">✓</span>فتحت مشروعك الخاص وما عارف كيف تدير المبيعات.</li>
     </ul>
   </div>
 </section>
@@ -589,7 +550,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
         <li><span class="tick">✓</span> مجموعة واتساب حصرية للخريجين</li>
         <li><span class="tick">✓</span> تحديثات مجانية للمحتوى</li>
       </ul>
-      <a href="#lead" class="btn btn-primary js-cta" data-loc="syllabus-aside">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+      <a href="#lead" class="btn btn-primary js-cta" data-loc="syllabus-aside">اترك تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
       <p class="tier-foot">مكالمة قصيرة معنا قبل التسجيل</p>
     </aside>
     </div>
@@ -631,7 +592,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       <!-- ═══ TIER 1: Digital ═══ -->
       <div class="tier">
         <div class="tier-name">الكورس الرقمي</div>
-        <p class="tier-tag">تعلّم بوقتك، بإيقاعك — الوصول الفوري لكل المنهج</p>
+        <p class="tier-tag">كورس مسجّل مع مرافقة عبر مجموعة بالواتساب</p>
         <div class="price-main">‏$500</div>
         <p class="price-alt">دفعة وحدة · أو ٣ دفعات</p>
 
@@ -643,7 +604,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
           <li><span class="tick">✓</span> ضمان الرضا — كسب أو نرجّعلك مصاريك</li>
         </ul>
 
-        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-digital" data-tier="digital">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-digital" data-tier="digital">اترك تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         <p class="tier-foot">مكالمة قصيرة معنا قبل التسجيل</p>
       </div>
 
@@ -651,7 +612,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       <div class="tier featured">
         <span class="flag">الأكثر طلبًا</span>
         <div class="tier-name">الكورس الجماعي</div>
-        <p class="tier-tag">‏٦ لقاءات مباشرة مع ربيع، بمجموعة صغيرة حتى ١٠ أشخاص</p>
+        <p class="tier-tag">وجاهي / زوم — الحد الأقصى عشرة أشخاص</p>
         <div class="price-main">‏$1,500</div>
         <p class="price-alt">مجموعة مغلقة — ١٠ مشاركين كحد أقصى</p>
 
@@ -663,14 +624,14 @@ TESTIMONIALS: commented out until 2 real ones with permission.
           <li><span class="tick">✓</span> مجموعة واتساب خاصة للمشاركين</li>
         </ul>
 
-        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-group" data-tier="group">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-group" data-tier="group">اترك تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         <p class="tier-foot">التسجيل بعد مقابلة قصيرة معنا</p>
       </div>
 
       <!-- ═══ TIER 3: 1:1 mentorship ═══ -->
       <div class="tier">
         <div class="tier-name">المرافقة الشخصية</div>
-        <p class="tier-tag">‏٣ شهور مرافقة مباشرة مع ربيع — مخصّصة لعملك</p>
+        <p class="tier-tag">كورس شخصي مع مرافقة وبناء استراتيجية وخطة عمل</p>
         <div class="price-main">‏$3,500</div>
         <p class="price-alt">لأصحاب المصالح الفعّالة فقط</p>
 
@@ -682,7 +643,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
           <li><span class="tick">✓</span> يشمل كل محتوى الكورس الرقمي</li>
         </ul>
 
-        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-mentorship" data-tier="mentorship">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+        <a href="#lead" class="btn btn-primary js-cta" data-loc="tier-mentorship" data-tier="mentorship">اترك تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
         <p class="tier-foot">مقابلة تأهّل قبل القبول</p>
       </div>
 
@@ -829,8 +790,8 @@ TESTIMONIALS: commented out until 2 real ones with permission.
     <p class="lead" style="margin-inline:auto">اتركلنا تفاصيلك ومنتواصل معك خلال ٢٤ ساعة.</p>
 
     <div class="cta-row">
-      <a href="#lead" class="btn btn-primary js-cta" data-loc="finale">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
-      <a href="#pricing" class="btn btn-outline js-cta" data-loc="finale-pricing">شوف المسارات <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+      <a href="#lead" class="btn btn-primary js-cta" data-loc="finale">اترك تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+      <a href="#pricing" class="btn btn-outline js-cta" data-loc="finale-pricing">اختار الدورة المناسبة <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
     </div>
     <p style="margin-top:20px;font-size:.85rem;color:var(--sub-2)">منتواصل معك خلال ٢٤ ساعة · ضمان الرضا — كسب أو نرجّعلك مصاريك</p>
   </div>
@@ -845,7 +806,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
 
 <div class="sticky">
   <div class="price">عندك سؤال؟<small>منتواصل معك خلال ٢٤ ساعة</small></div>
-  <a href="#lead" class="btn btn-primary js-cta" data-loc="sticky">اتركلنا تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
+  <a href="#lead" class="btn btn-primary js-cta" data-loc="sticky">اترك تفاصيلك <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></a>
 </div>
 
 <!-- FAQPage JSON-LD -->

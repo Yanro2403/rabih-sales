@@ -77,16 +77,23 @@ Short strings only; everything else was reused verbatim from existing copy.
 - Syllabus aside title: «كل المسارات مبنية على هالمنهج»; facts «درس فيديو» / «أقسام»
 - Module lesson counts: «٥ دروس» «٥ دروس» «٤ دروس»
 
+## Rabih's own copy (2026-09-03) — his words, keep them
+
+Rabih sent replacement copy via Yaniv; it is on the page with only orthographic
+normalization (ة/ه, hamza, shadda). Don't "improve" it:
+- Hero subtitle («تعلّم كيف تدير المكالمة من نقطة البداية حتى الإغلاق…»)
+- CTA labels: primary «اترك تفاصيلك», secondary «اختار الدورة المناسبة»
+- Tier descriptions under each tier name (وجاهي/زوم · كورس مسجّل · كورس شخصي)
+- The four «الدورة إلك إذا…» situations
+- **The «مين ربيع» section was deleted at his request** — the VSL tells his
+  story. Its stat cards and claims live in git history (commit before 2026-09-03
+  evening) if he ever wants them back.
+- Open terminology question for Rabih: the page still says «مسار» in the pricing
+  kicker/heading and form label, while his copy says «كورس»/«دورة». Pick one.
+
 ## Copy claims that need Rabih's verbatim approval before launch
 
-Search the file for these — they're in the credentials strip and story cards.
-Rabih must sign off that each is factually true as written:
-
-- «كسر رقم قياسي عمره 10 سنين بشركة اتصالات كبيرة»
-- The first-close story: one customer with 25 telecom lines → left with 50 packages
-- «من الاتصالات لعالم العقارات والمقاولات»
-- «آلاف مكالمات البيع الحقيقية»
-- The land story: six months of "no" then a deal with a developer
+- The refund promise «كسب أو نرجّعلك مصاريك» — confirm the actual terms.
 
 ## Live TODOs in the code
 
