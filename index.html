@@ -706,14 +706,6 @@ TESTIMONIALS: commented out until 2 real ones with permission.
 
       <!-- ═══ STEP 1: contact essentials ═══ -->
       <form class="lead-step js-lead-step-1" data-step="1" novalidate>
-        <fieldset class="row">
-          <legend>أي مسار بيهمك؟</legend>
-          <div class="radio-row">
-            <label class="radio-opt"><input type="radio" name="tier_interest" value="digital" required><span>الكورس الرقمي</span></label>
-            <label class="radio-opt"><input type="radio" name="tier_interest" value="group"><span>الجماعي</span></label>
-            <label class="radio-opt"><input type="radio" name="tier_interest" value="mentorship"><span>المرافقة</span></label>
-          </div>
-        </fieldset>
         <div class="row">
           <label for="lead-name">الاسم الكامل</label>
           <input id="lead-name" name="name" type="text" required autocomplete="name">
@@ -736,15 +728,17 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       <!-- ═══ STEP 2: qualification (hidden until step 1 submits) ═══ -->
       <form class="lead-step js-lead-step-2" data-step="2" hidden novalidate>
         <p class="step-2-lead">ممتاز — بقيت أربع تفاصيل بس، حتى نرجعلك بعرض مناسب:</p>
-        <div class="row-2">
-          <div class="row">
-            <label for="lead-age">العمر</label>
-            <input id="lead-age" name="age" type="number" min="16" max="99" required inputmode="numeric" dir="ltr">
+        <fieldset class="row">
+          <legend>أي مسار بيهمك؟</legend>
+          <div class="radio-row">
+            <label class="radio-opt"><input type="radio" name="tier_interest" value="digital"><span>الكورس الرقمي</span></label>
+            <label class="radio-opt"><input type="radio" name="tier_interest" value="group"><span>الجماعي</span></label>
+            <label class="radio-opt"><input type="radio" name="tier_interest" value="mentorship"><span>المرافقة</span></label>
           </div>
-          <div class="row">
-            <label for="lead-country">البلد</label>
-            <input id="lead-country" name="country" type="text" required autocomplete="country-name">
-          </div>
+        </fieldset>
+        <div class="row">
+          <label for="lead-country">البلد</label>
+          <input id="lead-country" name="country" type="text" required autocomplete="country-name">
         </div>
         <div class="row">
           <label for="lead-job">شو بتشتغل؟</label>
@@ -880,7 +874,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       if (tier){
         leadData.tier_interest = tier;
         /* Also pre-select the tier radio in the lead form */
-        var radio = document.querySelector('.js-lead-step-1 input[name="tier_interest"][value="' + tier + '"]');
+        var radio = document.querySelector('.lead-form input[name="tier_interest"][value="' + tier + '"]');
         if (radio) radio.checked = true;
       }
       if (typeof gtag === "function"){
@@ -931,6 +925,7 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       showStep(3);
     }
 
+    if (!leadData.tier_interest) leadData.tier_interest = "undecided";
     if (LEAD_ENDPOINT){
       /* success is shown whether or not the request succeeds — never lose a lead to a network error */
       var timer = setTimeout(finish, 4000);
@@ -952,10 +947,9 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       if (!step1.checkValidity()){ step1.reportValidity(); return; }
       var d = Object.fromEntries(new FormData(step1));
       leadData.name = d.name; leadData.phone = d.phone; leadData.email = d.email;
-      leadData.tier_interest = d.tier_interest || leadData.tier_interest || "";
       if (typeof gtag === "function"){
         gtag("event", "lead_step_1_complete", {
-          ref_tag: refTag, tier: leadData.tier_interest
+          ref_tag: refTag, tier: leadData.tier_interest || ""
         });
       }
       showStep(2);
@@ -966,8 +960,8 @@ TESTIMONIALS: commented out until 2 real ones with permission.
       e.preventDefault();
       if (!step2.checkValidity()){ step2.reportValidity(); return; }
       var d = Object.fromEntries(new FormData(step2));
-      leadData.age = d.age; leadData.country = d.country;
-      leadData.job = d.job; leadData.status = d.status;
+      leadData.tier_interest = d.tier_interest || leadData.tier_interest || "";
+      leadData.country = d.country; leadData.job = d.job; leadData.status = d.status;
       var btn = step2.querySelector('button[type="submit"]');
       if (btn){ btn.disabled = true; btn.setAttribute("aria-busy","true"); btn.textContent = "لحظة…"; } /* TODO: copy — Rabih to confirm */
       submitLead();
